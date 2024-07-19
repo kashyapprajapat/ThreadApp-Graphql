@@ -7,6 +7,14 @@ const queries = {
             password:payload.password
         })
         return token;
+    },
+    getCurrentLoggedInUser: async(_:any,parametrs:any,context:any) =>{
+        if(context && context.user){
+            const id  = context.user.id
+            const user = await UserService.getUserByID(id);
+            return user
+        }
+       throw new Error("I doont Know")
     }
 }
 const mutaions = {
